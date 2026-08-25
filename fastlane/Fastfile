@@ -39,7 +39,6 @@ platform :ios do
     profile_name = lane_context[SharedValues::SIGH_NAME]
 
     project_path = File.join(ENV.fetch("IOS_BUILD_PATH"), "Unity-iPhone.xcodeproj")
-    workspace_path = File.join(ENV.fetch("IOS_BUILD_PATH"), "Unity-iPhone.xcworkspace")
 
     increment_build_number(
       build_number: ENV.fetch("BUILD_NUMBER"),
@@ -63,7 +62,7 @@ platform :ios do
 
     output_directory = File.join(ENV.fetch("RUNNER_TEMP"), "signed")
     build_app(
-      workspace: workspace_path,
+      project: project_path,
       scheme: "Unity-iPhone",
       export_method: "app-store",
       output_directory: output_directory,
@@ -78,4 +77,3 @@ platform :ios do
     )
   end
 end
-
