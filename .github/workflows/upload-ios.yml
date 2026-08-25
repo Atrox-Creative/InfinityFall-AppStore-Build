@@ -70,8 +70,13 @@ jobs:
 
       - name: Install CocoaPods dependencies
         shell: bash
+        env:
+          COCOAPODS_DISABLE_STATS: "true"
         run: |
           cd "$IOS_BUILD_PATH"
+          # The generated Podfile still lists the legacy multi-gigabyte Specs Git repo.
+          # The official CocoaPods CDN below it contains the same specifications.
+          sed -i '' '/github.com\/CocoaPods\/Specs/d' Podfile
           pod install --repo-update
 
       - name: Set up Ruby and fastlane
