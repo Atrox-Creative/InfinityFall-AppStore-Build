@@ -1,0 +1,292 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3767296798241706998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3767296798241706995}
+  - component: {fileID: 3767296798241706994}
+  - component: {fileID: 3767296798241706997}
+  - component: {fileID: 3055704456335138380}
+  - component: {fileID: 274569909}
+  - component: {fileID: 1711001118}
+  - component: {fileID: 1458729083}
+  m_Layer: 0
+  m_Name: Pc_Helix
+  m_TagString: Helix
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3767296798241706995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767296798241706998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.1521, z: 0}
+  m_LocalScale: {x: 1.5, y: 15, z: 1.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3767296798241706994
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767296798241706998}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3767296798241706997
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767296798241706998}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 52b52bde10d26cd43b7d22047d1e465b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3055704456335138380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767296798241706998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0.52481717, z: 4}
+  m_Center: {x: 0, y: -1.002077, z: -0.00000015894572}
+--- !u!114 &274569909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767296798241706998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8d10807907d4045bdd83032472a0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeRotation: 45
+  changeY: 2.5
+  startYPoint: 10
+  PassCheck: {fileID: 6708202922312386577, guid: 94539a03ba2e8b848bfb06838345db35, type: 3}
+  Parts:
+  - {fileID: 0}
+  - {fileID: 5164732457584562068, guid: e7bdf0417999ecb4192fcb8530f0faee, type: 3}
+  - {fileID: 8740823180412902093, guid: 6673b97b81438d546bd70cd83a44381d, type: 3}
+  - {fileID: 5164732457584562068, guid: 95ed79e2c63c839439f6389077ed083d, type: 3}
+  - {fileID: 8740823180412902093, guid: f58b11a0bf1dcfc4c985a611ba1fd935, type: 3}
+  - {fileID: 8740823180412902093, guid: 26177decdce5d9f4d8102f1a8ef9bec2, type: 3}
+  levels:
+  - maxPartsNone: 2
+    maxPartsPlatform: 6
+    maxPartsDeath: 2
+    maxRotatorAllPlatform: 0
+    maxRotatorDeathPlatform: 0
+    maxWallsPlatform: 0
+  - maxPartsNone: 3
+    maxPartsPlatform: 10
+    maxPartsDeath: 3
+    maxRotatorAllPlatform: 0
+    maxRotatorDeathPlatform: 0
+    maxWallsPlatform: 0
+  - maxPartsNone: 3
+    maxPartsPlatform: 10
+    maxPartsDeath: 4
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 0
+    maxWallsPlatform: 0
+  - maxPartsNone: 3
+    maxPartsPlatform: 10
+    maxPartsDeath: 5
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 0
+    maxWallsPlatform: 0
+  - maxPartsNone: 3
+    maxPartsPlatform: 10
+    maxPartsDeath: 6
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 1
+    maxWallsPlatform: 1
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 2
+    maxWallsPlatform: 2
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 3
+    maxWallsPlatform: 0
+  - maxPartsNone: 1
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 4
+    maxWallsPlatform: 2
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 5
+    maxWallsPlatform: 2
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 5
+    maxWallsPlatform: 3
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 3
+    maxWallsPlatform: 4
+  - maxPartsNone: 1
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 2
+    maxWallsPlatform: 5
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 5
+    maxWallsPlatform: 5
+  - maxPartsNone: 1
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 4
+    maxWallsPlatform: 5
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 7
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 3
+    maxWallsPlatform: 2
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 8
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 3
+    maxWallsPlatform: 3
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 8
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 3
+    maxWallsPlatform: 4
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 8
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 5
+    maxWallsPlatform: 5
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 8
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 5
+    maxWallsPlatform: 5
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 8
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 5
+    maxWallsPlatform: 5
+  - maxPartsNone: 2
+    maxPartsPlatform: 10
+    maxPartsDeath: 8
+    maxRotatorAllPlatform: 1
+    maxRotatorDeathPlatform: 5
+    maxWallsPlatform: 5
+  orders:
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+  - order: []
+--- !u!136 &1711001118
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767296798241706998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1458729083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767296798241706998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82401c91c749fc429be58a175cdedfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatorSpeed: 400
