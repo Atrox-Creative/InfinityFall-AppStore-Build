@@ -45,6 +45,10 @@ platform :ios do
       build_number: ENV.fetch("BUILD_NUMBER"),
       xcodeproj: project_path
     )
+    increment_version_number(
+      version_number: ENV.fetch("MARKETING_VERSION"),
+      xcodeproj: project_path
+    )
 
     # UnityFramework stays automatic; the application target uses the App Store profile.
     update_code_signing_settings(
