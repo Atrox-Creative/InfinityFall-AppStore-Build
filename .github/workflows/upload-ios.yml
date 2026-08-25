@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Check out CI configuration
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Verify Xcode 26
         shell: bash
@@ -52,9 +52,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release download ios-xcode-1.0.1-build1 \
-            --pattern InfinityFall-iOS-Xcode-1.0.1-build1.zip \
-            --dir "$RUNNER_TEMP"
+          asset_url="$(
+            gh api "repos/$GITHUB_REPOSITORY/releases?per_page=100" \
+              --jq '.[] | select(.tag_name == "ios-xcode-1.0.1-build1") | .assets[] | select(.name == "InfinityFall-iOS-Xcode-1.0.1-build1.zip") | .url'
+          )"
+          if [[ -z "$asset_url" ]]; then
+            echo "The private draft build asset was not found." >&2
+            exit 1
+          fi
+          gh api \
+            -H "Accept: application/octet-stream" \
+            "$asset_url" > "$RUNNER_TEMP/InfinityFall-iOS-Xcode-1.0.1-build1.zip"
           ditto -x -k \
             "$RUNNER_TEMP/InfinityFall-iOS-Xcode-1.0.1-build1.zip" \
             "$GITHUB_WORKSPACE"
