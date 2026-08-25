@@ -19,6 +19,7 @@ jobs:
   upload:
     name: Sign and upload Infinity Fall
     runs-on: macos-26
+    environment: app-store
     timeout-minutes: 120
     env:
       IOS_BUNDLE_ID: com.DefaultCompany.Pelota-rebota
@@ -89,4 +90,3 @@ jobs:
       - name: Sign and upload build 1
         shell: bash
         run: bundle exec fastlane ios upload
-
