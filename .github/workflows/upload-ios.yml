@@ -68,6 +68,32 @@ jobs:
             "$RUNNER_TEMP/InfinityFall-iOS-Xcode-1.0.1-build1.zip" \
             "$GITHUB_WORKSPACE"
 
+      - name: Remove duplicate legacy Google Ads objects
+        shell: bash
+        run: |
+          library="$IOS_BUILD_PATH/Libraries/Plugins/iOS/unity-plugin-library.a"
+          arm64_library="$RUNNER_TEMP/unity-plugin-library-arm64.a"
+          lipo "$library" -thin arm64 -output "$arm64_library"
+          duplicate_objects="$(ar -t "$arm64_library" | grep -E 'GADPAID.*\.o$' || true)"
+          if [[ -z "$duplicate_objects" ]]; then
+            echo "No legacy GADPAID objects were found in unity-plugin-library.a" >&2
+            exit 1
+          fi
+          while IFS= read -r object_name; do
+            ar -d "$arm64_library" "$object_name"
+          done <<< "$duplicate_objects"
+          ranlib "$arm64_library"
+          cp "$arm64_library" "$library"
+
+      - name: Install CocoaPods dependencies
+        shell: bash
+        env:
+          COCOAPODS_DISABLE_STATS: "true"
+        run: |
+          cd "$IOS_BUILD_PATH"
+          sed -i '' '/github.com\/CocoaPods\/Specs/d' Podfile
+          pod install --repo-update
+
       - name: Set up Ruby and fastlane
         uses: ruby/setup-ruby@v1
         with:
