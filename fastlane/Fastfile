@@ -1,0 +1,81 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Sign the Unity Xcode project and upload it to App Store Connect"
+  lane :upload do
+    app_store_key = app_store_connect_api_key(
+      key_id: ENV.fetch("APPSTORE_KEY_ID"),
+      issuer_id: ENV.fetch("APPSTORE_ISSUER_ID"),
+      key_content: ENV.fetch("APPSTORE_P8")
+    )
+
+    create_keychain(
+      name: "infinityfall-ci.keychain",
+      password: ENV.fetch("KEYCHAIN_PASSWORD"),
+      default_keychain: true,
+      unlock: true,
+      timeout: 3_600,
+      lock_when_sleeps: false
+    )
+
+    import_certificate(
+      certificate_path: ENV.fetch("IOS_DISTRIBUTION_P12_PATH"),
+      certificate_password: ENV.fetch("IOS_DISTRIBUTION_P12_PASSWORD"),
+      keychain_name: "infinityfall-ci.keychain",
+      keychain_password: ENV.fetch("KEYCHAIN_PASSWORD")
+    )
+
+    profile_path = File.join(ENV.fetch("RUNNER_TEMP"), "InfinityFall-AppStore.mobileprovision")
+    profile_uuid = sigh(
+      api_key: app_store_key,
+      app_identifier: ENV.fetch("IOS_BUNDLE_ID"),
+      team_id: ENV.fetch("APPLE_TEAM_ID"),
+      provisioning_name: "Infinity Fall App Store CI",
+      force: true,
+      cert_id: ENV.fetch("APPLE_DISTRIBUTION_CERTIFICATE_ID"),
+      filename: File.basename(profile_path),
+      output_path: File.dirname(profile_path)
+    )
+    profile_name = lane_context[SharedValues::SIGH_NAME]
+
+    project_path = File.join(ENV.fetch("IOS_BUILD_PATH"), "Unity-iPhone.xcodeproj")
+    workspace_path = File.join(ENV.fetch("IOS_BUILD_PATH"), "Unity-iPhone.xcworkspace")
+
+    increment_build_number(
+      build_number: ENV.fetch("BUILD_NUMBER"),
+      xcodeproj: project_path
+    )
+
+    # UnityFramework stays automatic; the application target uses the App Store profile.
+    update_code_signing_settings(
+      use_automatic_signing: true,
+      path: project_path
+    )
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      team_id: ENV.fetch("APPLE_TEAM_ID"),
+      code_sign_identity: "Apple Distribution",
+      targets: "Unity-iPhone",
+      path: project_path,
+      profile_name: profile_name,
+      profile_uuid: profile_uuid
+    )
+
+    output_directory = File.join(ENV.fetch("RUNNER_TEMP"), "signed")
+    build_app(
+      workspace: workspace_path,
+      scheme: "Unity-iPhone",
+      export_method: "app-store",
+      output_directory: output_directory,
+      output_name: "InfinityFall.ipa",
+      xcargs: "-allowProvisioningUpdates"
+    )
+
+    upload_to_testflight(
+      api_key: app_store_key,
+      ipa: File.join(output_directory, "InfinityFall.ipa"),
+      skip_waiting_for_build_processing: true
+    )
+  end
+end
+
